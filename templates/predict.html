@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,8 +8,10 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-image: url('https://wallpaperset.com/w/full/7/8/6/168587.jpg'); /* Ganti dengan path atau URL gambar Anda */
-            background-size: cover; /* Sesuaikan agar gambar latar menutupi seluruh area body */
+            background-image: url('https://wallpaperset.com/w/full/7/8/6/168587.jpg');
+            /* Ganti dengan path atau URL gambar Anda */
+            background-size: cover;
+            /* Sesuaikan agar gambar latar menutupi seluruh area body */
             margin: 20px;
             display: flex;
             flex-direction: column;
@@ -61,15 +64,33 @@
             font-size: 35px;
         }
 
+        a {
+            text-decoration: none;
+            background-color: #40598F;
+            color: #fff;
+            padding: 20px 35px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            /* Menambah jarak antara artikel dan tombol Next */
+        }
+
+        a:hover {
+            background-color: #384E7E;
+        }
     </style>
 </head>
+
 <body>
     <h2 class="hasil-prediksi-title">Hasil Prediksi</h2>
     <div class="prediction-container">
-        
+
         <p>Hasil prediksi untuk gaji yang dimasukkan:</p>
         <p><strong class="predict-title">Prediksi:</strong> {{ prediction }}</p>
         <p class="runtime-info"><strong>Runtime:</strong> {{ runtime }}</p>
     </div>
+    <a href="/">Back</a>
 </body>
+
 </html>

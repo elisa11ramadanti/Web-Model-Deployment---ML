@@ -1,172 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Income Predict</title>
-    <link rel="stylesheet" href="static/css/styles.css">
-    <style>
-      body {
-        font-family: 'Arial', sans-serif;
-      margin: 20px;
-      align-items: center;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Income Predict</title>
+  <link rel="stylesheet" href="static/css/styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #eff1f2;
+      font-family: sans-serif;
+      margin: 0;
+    }
+
+    .content {
+      grid-area: content;
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+      background: linear-gradient(to right,
+          rgba(200, 107, 142, 1),
+          rgba(218, 105, 250, 1),
+          rgba(110, 125, 253, 1));
       justify-content: center;
-      height: 100vh; 
-      margin-top: 150px;
-      background-image: url('https://i0.wp.com/anaktekno.id/wp-content/uploads/2023/04/ukuran-wallpaper-laptop.jpg?fit=1366%2C768&ssl=1'); /* Ganti dengan path atau URL gambar Anda */
-      background-size: cover; /* Sesuaikan agar gambar latar menutupi seluruh area body */
+    }
+
+    .footer {
+      grid-area: footer;
+      background: white;
+    }
+
+    .container {
+      font-size: 1.5em;
+      width: 100%;
+      /* Mengubah lebar container menjadi 80% dari lebar layar */
+      margin: auto;
+      /* Menengahkan container di tengah layar */
+      display: grid;
+      grid-template-areas: 'sidebar' 'content' 'footer';
+      grid-template-columns: 1fr;
+      grid-template-rows: 130px 800px 250px;
+    }
+
+    .content,
+    .sidebar,
+    .footer {
+      padding: 1em;
+    }
+
+    nav ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    nav li {
+      list-style: none;
+      padding: 1em 0;
+    }
+
+    nav li a {
+      color: white;
+      font-weight: 700;
+      opacity: 0.6;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav li a:hover {
+      opacity: 1;
+    }
+
+    .hero {
+      max-width: 250 px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero img {
+      width: 200px;
+    }
+
+    .hero h1 {
+      font-size: 2em;
+      font-weight: 100;
+      color: #373046;
+    }
+
+    .hero p {
+      font-weight: 200;
+      line-height: 1.3em;
+      color: #98abad;
+    }
+
+    .action-btn {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+      background: #567bfb;
+      padding: 0.5em 2em;
+      border-radius: 60px;
+      margin: 1em 0;
+      transition: 0.3s;
+    }
+
+    footer ul {
+      max-width: 640px;
+      margin: 2em auto;
+      padding: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+    }
+
+    footer ul li {
+      list-style: none;
+      align-self: flex-end;
+    }
+
+    footer ul li a {
+      text-decoration: none;
+      color: #c1c6ce;
+    }
+
+    footer ul li img {
+      width: 30%;
+    }
+
+    footer p {
+      font-size: 0.8em;
+    }
+
+    @media (min-width: 1040px) {
+      .container {
+        grid-template-areas: 'sidebar content' 'sidebar footer';
+        grid-template-rows: 1fr auto;
+        grid-template-columns: 300px 1fr;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+
+      .sidebar {
+        background: linear-gradient(rgba(200, 107, 142, 1),
+            rgba(218, 105, 250, 1),
+            rgba(110, 125, 253, 1));
+        padding-top: 10em;
+      }
+
+      .hero {
+        text-align: left;
+        margin: 7em 0;
+      }
+
+      .hero img {
+        width: 200px;
+        float: right;
+      }
+
+      .hero h1 {
+        font-size: 3em;
+      }
+
+      .hero p {
+        width: 60%;
+      }
+
+      footer ul {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1em 0;
+      }
+
+      footer ul li a img {
+        width: 20%;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      background-color: #40598F;
+      color: #fff;
+      padding: 20px 35px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+      /* Menambah jarak antara artikel dan tombol Next */
+    }
+
+    a:hover {
+      background-color: #384E7E;
+    }
+
+    form {
+      max-width: 500px;
+      /* Mengubah lebar maksimum form menjadi 500px */
+      width: 100%;
+      /* Menyesuaikan lebar form agar responsif */
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-left: 120px;
     }
 
 
-      h2 {
-        color: #654E92;
-      }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: bold;
+    }
 
-      form {
-        max-width: 400px;
-        margin: 0 auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
 
-      label {
-        display: block;
-        margin-bottom: 8px;
-        color: #555;
-        font-weight: bold;
-      }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="#555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z" /></svg>');
+      background-repeat: no-repeat;
+      background-position-x: 100%;
+      background-position-y: 10px;
+      background-size: 24px;
+    }
 
-      input,
-      select {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 12px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
+    input[type="submit"] {
+      background-color: #40598F;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-      select {
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-image: url('data:image/svg+xml;utf8,<svg fill="#555" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z" /></svg>');
-        background-repeat: no-repeat;
-        background-position-x: 100%;
-        background-position-y: 10px;
-        background-size: 24px;
-      }
+    input[type="submit"]:hover {
+      background-color: #384E7E;
+    }
+  </style>
+</head>
 
-      input[type="submit"] {
-        background-color: #40598F;
-        color: #fff;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <nav>
+        <ul>
 
-      input[type="submit"]:hover {
-        background-color: #384E7E;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 style= "text-align: center; color: white; font-family: 'Poppins bold', sans-serif; font-weight: 600; font-size: 40px">Input Data</h1>
-    <form action="/predict" method="post">
-      <label for="age">1. Age:</label>
-      <input type="text" id="age" name="age" required><br>
+          <li><a href="/">About Us</a></li>
+          <li><a href="/index">Income Predict</a></li>
 
-      <label for="education">2. Education:</label>
-      <select id="education" name="education" required>
-        <option value="11">HS-grad</option>
-            <option value="15">Some-college</option>
-            <option value="9">Bachelors</option>
-            <option value="12">Masters</option>
-            <option value="8">Assoc-voc</option>
-            <option value="1">11th</option>
-            <option value="7">Assoc-acdm</option>
-            <option value="0">10th</option>
-            <option value="5">7th-8th</option>
-            <option value="14">Prof-school</option>
-            <option value="6">9th</option>
-            <option value="2">12th</option>
-            <option value="10">Doctorate</option>
-            <option value="4">5th-6th</option>
-            <option value="3">1st-4th</option>
-            <option value="13">Preschool</option>
-      </select><br>
 
-      <label for="occupation">3. Occupation:</label>
-      <select id="occupation" name="occupation" required>
-        <option value="2">Craft-repair</option>
-            <option value="3">Exec-managerial</option>
-            <option value="9">Prof-specialty</option>
-            <option value="0">Adm-clerical</option>
-            <option value="11">Sales</option>
-            <option value="7">Other-service</option>
-            <option value="6">Machine-op-inspc</option>
-            <option value="13">Transport-moving</option>
-            <option value="5">Handlers-cleaners</option>
-            <option value="4">Farming-fishing</option>
-            <option value="12">Tech-support</option>
-            <option value="10">Protective-serv</option>
-            <option value="8">Priv-house-serv</option>
-            <option value="1">Armed-Forces</option>
-      </select><br>
+        </ul>
+      </nav>
+    </div>
+    <main class="content">
+      <section class="hero">
+        <img src="online.png" alt="" />
+        <div class="hero-content">
+          <h1
+            style=" color: rgb(52, 45, 45); font-family: 'Poppins bold', sans-serif; font-weight: 500; font-size: 25px">
+            Please fill in the data below :</h1>
+          <br /><br />
 
-      <label for="hours-per-week">4. Hours per Week:</label>
-      <input type="text" id="hours-per-week" name="hours_per_week" required><br>
+          <form action="/predict" method="post">
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" required><br>
 
-      <label for="native-country">5. Native Country:</label>
-      <select id="native-country" name="native_country" required>
-        <option value="38">United States</option>
-          <option value="25">Mexico</option>
-          <option value="29">Philippines</option>
-          <option value="10">Germany</option>
-          <option value="32">Puerto-Rico</option>
-          <option value="1">Canada</option>
-          <option value="7">El-Salvador</option>
-          <option value="18">India</option>
-          <option value="4">Cuba</option>
-          <option value="2">China</option>
-          <option value="8">England</option>
-          <option value="22">Jamaica</option>
-          <option value="34">South</option>
-          <option value="5">Dominican-Republic</option>
-          <option value="21">Italy</option>
-          <option value="23">Japan</option>
-          <option value="39">Vietnam</option>
-          <option value="12">Guatemala</option>
-          <option value="3">Columbia</option>
-          <option value="30">Poland</option>
-          <option value="13">Haiti</option>
-          <option value="31">Portugal</option>
-          <option value="19">Iran</option>
-          <option value="35">Taiwan</option>
-          <option value="26">Nicaragua</option>
-          <option value="11">Greece</option>
-          <option value="6">Ecuador</option>
-          <option value="28">Peru</option>
-          <option value="20">Ireland</option>
-          <option value="9">France</option>
-          <option value="36">Thailand</option>
-          <option value="16">Hong</option>
-          <option value="0">Cambodia</option>
-          <option value="37">Trinadad&Tobago</option>
-          <option value="40">Yugoslavia</option>
-          <option value="15">Honduras</option>
-          <option value="33">Scotland</option>
-          <option value="27">Outlying-US(Guam-USVI-etc)</option>
-          <option value="24">Laos</option>
-          <option value="17">Hungary</option>
-          <option value="14">Holand-Netherlands</option>
-      </select><br>
+            <label for="education">Education:</label>
+            <select id="education" name="education" required>
+              <option value="11">HS-grad</option>
+              <option value="15">Some-college</option>
+              <option value="9">Bachelors</option>
+              <option value="12">Masters</option>
+              <option value="8">Assoc-voc</option>
+              <option value="1">11th</option>
+              <option value="7">Assoc-acdm</option>
+              <option value="0">10th</option>
+              <option value="5">7th-8th</option>
+              <option value="14">Prof-school</option>
+              <option value="6">9th</option>
+              <option value="2">12th</option>
+              <option value="10">Doctorate</option>
+              <option value="4">5th-6th</option>
+              <option value="3">1st-4th</option>
+              <option value="13">Preschool</option>
+            </select><br>
 
-      <br /><br />
-      <input type="submit" value="Predict"/>
-    </form>
-  </body>
+            <label for="occupation">Occupation:</label>
+            <select id="occupation" name="occupation" required>
+              <option value="2">Craft-repair</option>
+              <option value="3">Exec-managerial</option>
+              <option value="9">Prof-specialty</option>
+              <option value="0">Adm-clerical</option>
+              <option value="11">Sales</option>
+              <option value="7">Other-service</option>
+              <option value="6">Machine-op-inspc</option>
+              <option value="13">Transport-moving</option>
+              <option value="5">Handlers-cleaners</option>
+              <option value="4">Farming-fishing</option>
+              <option value="12">Tech-support</option>
+              <option value="10">Protective-serv</option>
+              <option value="8">Priv-house-serv</option>
+              <option value="1">Armed-Forces</option>
+            </select><br>
+
+            <label for="hours-per-week">Hours per Week:</label>
+            <input type="text" id="hours-per-week" name="hours_per_week" required><br>
+
+            <label for="native-country">Native Country:</label>
+            <select id="native-country" name="native_country" required>
+              <option value="38">United States</option>
+              <option value="25">Mexico</option>
+              <option value="29">Philippines</option>
+              <option value="10">Germany</option>
+              <option value="32">Puerto-Rico</option>
+              <option value="1">Canada</option>
+              <option value="7">El-Salvador</option>
+              <option value="18">India</option>
+              <option value="4">Cuba</option>
+              <option value="2">China</option>
+              <option value="8">England</option>
+              <option value="22">Jamaica</option>
+              <option value="34">South</option>
+              <option value="5">Dominican-Republic</option>
+              <option value="21">Italy</option>
+              <option value="23">Japan</option>
+              <option value="39">Vietnam</option>
+              <option value="12">Guatemala</option>
+              <option value="3">Columbia</option>
+              <option value="30">Poland</option>
+              <option value="13">Haiti</option>
+              <option value="31">Portugal</option>
+              <option value="19">Iran</option>
+              <option value="35">Taiwan</option>
+              <option value="26">Nicaragua</option>
+              <option value="11">Greece</option>
+              <option value="6">Ecuador</option>
+              <option value="28">Peru</option>
+              <option value="20">Ireland</option>
+              <option value="9">France</option>
+              <option value="36">Thailand</option>
+              <option value="16">Hong</option>
+              <option value="0">Cambodia</option>
+              <option value="37">Trinadad&Tobago</option>
+              <option value="40">Yugoslavia</option>
+              <option value="15">Honduras</option>
+              <option value="33">Scotland</option>
+              <option value="27">Outlying-US(Guam-USVI-etc)</option>
+              <option value="24">Laos</option>
+              <option value="17">Hungary</option>
+              <option value="14">Holand-Netherlands</option>
+            </select><br>
+            <br />
+            <input type="submit" value="Predict" />
+          </form>
+
+        </div>
+      </section>
+    </main>
+
+  </div>
+  </div>
+</body>
+
 </html>
