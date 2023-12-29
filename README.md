@@ -55,6 +55,17 @@ https://drive.google.com/file/d/1w_AJE2pfCWM7R_AlVPWxzv5yVU20-AXd/view?usp=drive
   ```bash
   filesaved = clf.save_model('model_tabular_h5')
   ```
+  **Dataset results**
+  <p align="center">
+   <img width="411" alt="image" src="https://github.com/elisa11ramadanti/WebModelDeployment-ML/assets/78844334/69ae91ec-14b1-4d96-ba3e-9028139112d1">
+  </p>
+
+  <p align="center">
+   <img width="411" alt="image" src="https://github.com/elisa11ramadanti/WebModelDeployment-ML/assets/78844334/29a8ca53-b138-4c27-a3f6-e4828cb9fd78">
+  </p>
+
+
+
 # **Project Structure**
 * Model Machine Learning: Model TabNet yang telah dilatih digunakan untuk memprediksi penghasilan berdasarkan data tabular.
 * Aplikasi Flask: Terdapat tiga halaman, satu untuk menampilkan tentang website, lalu untuk input data (index.html) dan satu untuk menampilkan hasil prediksi (predict.html).
